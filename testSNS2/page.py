@@ -6,11 +6,12 @@ import sys
 app = flask.Flask(__name__)
 app.config['SECRET_KEY'] = 'pass'
 
+# 初めのページ
 @app.route('/')
 def main():
-    return '''
+    return flask.render_template('index.html')
 
-    '''
+# ログインページ
 @app.route('/login')
 def login():
     flask.session['name'] = flask.request.args.get('name')
@@ -32,4 +33,5 @@ def logout():
 
 
 if __name__ == "__main__":
+    # app.debug = True
     app.run()
